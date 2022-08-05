@@ -1,10 +1,5 @@
 #include <Rcpp.h>
-#include <algorithm>
-#include <cstdlib>
-#include <fstream>
-#include <iomanip>
 #include <string>
-#include <vector>
 
 using namespace Rcpp;
 
