@@ -2,7 +2,7 @@
 using namespace Rcpp;
 
 // [[Rcpp::export]]
-List bigram_cpp( std::vector< std::string > strings) {
+List bigram( std::vector< std::string > strings) {
 
   // create list of bigrams
   int num_strings = strings.size();

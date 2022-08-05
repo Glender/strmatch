@@ -5,14 +5,14 @@
 
 using namespace Rcpp;
 
-// bigram_cpp
-List bigram_cpp(std::vector< std::string > strings);
-RcppExport SEXP _strmatch_bigram_cpp(SEXP stringsSEXP) {
+// bigram
+List bigram(std::vector< std::string > strings);
+RcppExport SEXP _strmatch_bigram(SEXP stringsSEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< std::vector< std::string > >::type strings(stringsSEXP);
-    rcpp_result_gen = Rcpp::wrap(bigram_cpp(strings));
+    rcpp_result_gen = Rcpp::wrap(bigram(strings));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -88,7 +88,7 @@ END_RCPP
 }
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_strmatch_bigram_cpp", (DL_FUNC) &_strmatch_bigram_cpp, 1},
+    {"_strmatch_bigram", (DL_FUNC) &_strmatch_bigram, 1},
     {"_strmatch_jaro", (DL_FUNC) &_strmatch_jaro, 2},
     {"_strmatch_jaro_winkler_distance", (DL_FUNC) &_strmatch_jaro_winkler_distance, 2},
     {"_strmatch_levenstein_distance", (DL_FUNC) &_strmatch_levenstein_distance, 2},
