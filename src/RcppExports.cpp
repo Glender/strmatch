@@ -5,27 +5,27 @@
 
 using namespace Rcpp;
 
-// jaro_distance
-double jaro_distance(std::string s1, std::string s2);
-RcppExport SEXP _strmatch_jaro_distance(SEXP s1SEXP, SEXP s2SEXP) {
+// jaro
+double jaro(const std::string s1, const std::string s2);
+RcppExport SEXP _strmatch_jaro(SEXP s1SEXP, SEXP s2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< std::string >::type s1(s1SEXP);
-    Rcpp::traits::input_parameter< std::string >::type s2(s2SEXP);
-    rcpp_result_gen = Rcpp::wrap(jaro_distance(s1, s2));
+    Rcpp::traits::input_parameter< const std::string >::type s1(s1SEXP);
+    Rcpp::traits::input_parameter< const std::string >::type s2(s2SEXP);
+    rcpp_result_gen = Rcpp::wrap(jaro(s1, s2));
     return rcpp_result_gen;
 END_RCPP
 }
-// jaro_Winkler
-double jaro_Winkler(string s1, string s2);
-RcppExport SEXP _strmatch_jaro_Winkler(SEXP s1SEXP, SEXP s2SEXP) {
+// jaro_winkler_distance
+double jaro_winkler_distance(std::string str1, std::string str2);
+RcppExport SEXP _strmatch_jaro_winkler_distance(SEXP str1SEXP, SEXP str2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< string >::type s1(s1SEXP);
-    Rcpp::traits::input_parameter< string >::type s2(s2SEXP);
-    rcpp_result_gen = Rcpp::wrap(jaro_Winkler(s1, s2));
+    Rcpp::traits::input_parameter< std::string >::type str1(str1SEXP);
+    Rcpp::traits::input_parameter< std::string >::type str2(str2SEXP);
+    rcpp_result_gen = Rcpp::wrap(jaro_winkler_distance(str1, str2));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -41,11 +41,48 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// levenstein_ratio
+double levenstein_ratio(std::string s1, std::string s2);
+RcppExport SEXP _strmatch_levenstein_ratio(SEXP s1SEXP, SEXP s2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type s1(s1SEXP);
+    Rcpp::traits::input_parameter< std::string >::type s2(s2SEXP);
+    rcpp_result_gen = Rcpp::wrap(levenstein_ratio(s1, s2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// to_uppercase
+std::string to_uppercase(std::string str);
+RcppExport SEXP _strmatch_to_uppercase(SEXP strSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type str(strSEXP);
+    rcpp_result_gen = Rcpp::wrap(to_uppercase(str));
+    return rcpp_result_gen;
+END_RCPP
+}
+// to_lowercase
+std::string to_lowercase(std::string str);
+RcppExport SEXP _strmatch_to_lowercase(SEXP strSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type str(strSEXP);
+    rcpp_result_gen = Rcpp::wrap(to_lowercase(str));
+    return rcpp_result_gen;
+END_RCPP
+}
 
 static const R_CallMethodDef CallEntries[] = {
-    {"_strmatch_jaro_distance", (DL_FUNC) &_strmatch_jaro_distance, 2},
-    {"_strmatch_jaro_Winkler", (DL_FUNC) &_strmatch_jaro_Winkler, 2},
+    {"_strmatch_jaro", (DL_FUNC) &_strmatch_jaro, 2},
+    {"_strmatch_jaro_winkler_distance", (DL_FUNC) &_strmatch_jaro_winkler_distance, 2},
     {"_strmatch_levenstein_distance", (DL_FUNC) &_strmatch_levenstein_distance, 2},
+    {"_strmatch_levenstein_ratio", (DL_FUNC) &_strmatch_levenstein_ratio, 2},
+    {"_strmatch_to_uppercase", (DL_FUNC) &_strmatch_to_uppercase, 1},
+    {"_strmatch_to_lowercase", (DL_FUNC) &_strmatch_to_lowercase, 1},
     {NULL, NULL, 0}
 };
 

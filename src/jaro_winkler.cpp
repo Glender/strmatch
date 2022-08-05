@@ -1,110 +1,66 @@
 #include <Rcpp.h>
-#include <bits/stdc++.h>
+#include <algorithm>
+#include <cstdlib>
+#include <fstream>
+#include <iomanip>
+#include <string>
+#include <vector>
 
 using namespace Rcpp;
-using namespace std;
+
 
 // [[Rcpp::export]]
-double jaro_distance(string s1, string s2)
-{
-  // If the strings are equal
-  if (s1 == s2)
-    return 1.0;
+double jaro_winkler_distance(std::string str1, std::string str2) {
 
-  // Length of two strings
-  int len1 = s1.length(),
-    len2 = s2.length();
+  size_t len1 = str1.size();
+  size_t len2 = str2.size();
+  if (len1 < len2) {
+    std::swap(str1, str2);
+    std::swap(len1, len2);
+  }
+  if (len2 == 0)
+    return len1 == 0 ? 0.0 : 1.0;
 
-  // Maximum distance upto which matching
-  // is allowed
-  int max_dist = floor(max(len1, len2) / 2) - 1;
+  size_t delta = std::max(size_t(1), len1/2) - 1;
+  std::vector<bool> flag(len2, false);
+  std::vector<char> ch1_match;
+  ch1_match.reserve(len1);
 
-  // Count of matches
-  int match = 0;
-
-  // Hash for matches
-  int hash_s1[s1.length()] = { 0 },
-    hash_s2[s2.length()] = { 0 };
-
-  // Traverse through the first string
-  for (int i = 0; i < len1; i++) {
-
-    // Check if there is any matches
-    for (int j = max(0, i - max_dist);
-         j < min(len2, i + max_dist + 1); j++)
-
-      // If there is a match
-      if (s1[i] == s2[j] && hash_s2[j] == 0) {
-        hash_s1[i] = 1;
-        hash_s2[j] = 1;
-        match++;
+  for (size_t idx1 = 0; idx1 < len1; ++idx1) {
+    char ch1 = str1[idx1];
+    for (size_t idx2 = 0; idx2 < len2; ++idx2) {
+      char ch2 = str2[idx2];
+      if (idx2 <= idx1 + delta && idx2 + delta >= idx1
+            && ch1 == ch2 && !flag[idx2]) {
+        flag[idx2] = true;
+        ch1_match.push_back(ch1);
         break;
       }
+    }
   }
 
-  // If there is no match
-  if (match == 0)
+  size_t matches = ch1_match.size();
+  if (matches == 0)
     return 0.0;
 
-  // Number of transpositions
-  double t = 0;
-
-  int point = 0;
-
-  // Count number of occurrences
-  // where two characters match but
-  // there is a third matched character
-  // in between the indices
-  for (int i = 0; i < len1; i++)
-    if (hash_s1[i]) {
-
-      // Find the next matched character
-      // in second string
-      while (hash_s2[point] == 0)
-        point++;
-
-      if (s1[i] != s2[point++])
-        t++;
+  size_t transpositions = 0;
+  for (size_t idx1 = 0, idx2 = 0; idx2 < len2; ++idx2) {
+    if (flag[idx2]) {
+      if (str2[idx2] != ch1_match[idx1])
+        ++transpositions;
+      ++idx1;
     }
-
-    t /= 2;
-
-    // Return the Jaro Similarity
-    return (((double)match) / ((double)len1)
-              + ((double)match) / ((double)len2)
-              + ((double)match - t) / ((double)match))
-              / 3.0;
-}
-
-// [[Rcpp::export]]
-double jaro_Winkler(string s1, string s2)
-{
-  double jaro_dist = jaro_distance(s1, s2);
-
-  // If the jaro Similarity is above a threshold
-  if (jaro_dist > 0.7) {
-
-    // Find the length of common prefix
-    int prefix = 0;
-
-    for (int i = 0;
-         i < min(s1.length(), s2.length()); i++) {
-      // If the characters match
-      if (s1[i] == s2[i])
-        prefix++;
-
-      // Else break
-      else
-        break;
-    }
-
-    // Maximum of 4 characters are allowed in prefix
-    prefix = min(4, prefix);
-
-    // Calculate jaro winkler Similarity
-    jaro_dist += 0.1 * prefix * (1 - jaro_dist);
   }
 
-  return jaro_dist;
-}
+  double m = matches;
+  double jaro = (m/len1 + m/len2 + (m - transpositions/2.0)/m)/3.0;
 
+  size_t common_prefix = 0;
+  len2 = std::min(size_t(4), len2);
+
+  for (size_t i = 0; i < len2; ++i) {
+    if (str1[i] == str2[i])
+      ++common_prefix;
+  }
+  return (jaro + common_prefix * 0.1 * (1.0 - jaro));
+}
