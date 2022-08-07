@@ -59,3 +59,30 @@ double jaro_winkler_distance(std::string str1, std::string str2) {
   }
   return (jaro + common_prefix * 0.1 * (1.0 - jaro));
 }
+
+
+//' Calculate for each string the Jaro Winkler Distance given a set of target strings.
+//'
+//' @param strings String Vector.
+//' @param targets String Vector.
+//' @export
+// [[Rcpp::export]]
+List most_similar_jw(std::vector< std::string > strings, std::vector< std::string > targets) {
+
+  // create list to store results
+  unsigned int num_strings = strings.size();
+  List out(num_strings);
+
+  unsigned int num_targets = targets.size();
+  for( int i=0; i < num_strings; i++ ) {
+
+    NumericVector v(num_targets);
+    for( int j=0; j < num_targets; j++ ) {
+
+      // calculate  JWD for each target and store them in v
+      v[j] = jaro_winkler_distance(strings[i], targets[j]);
+    }
+    out[i] = v;
+  }
+  return out;
+}

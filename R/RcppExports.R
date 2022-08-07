@@ -5,12 +5,30 @@ bigram <- function(strings) {
     .Call('_strmatch_bigram', PACKAGE = 'strmatch', strings)
 }
 
-jaro <- function(s1, s2) {
-    .Call('_strmatch_jaro', PACKAGE = 'strmatch', s1, s2)
+jaro_distance <- function(s1, s2) {
+    .Call('_strmatch_jaro_distance', PACKAGE = 'strmatch', s1, s2)
+}
+
+#' Calculate for each string the Jaro Distance given a set of target strings.
+#'
+#' @param strings String Vector.
+#' @param targets String Vector.
+#' @export
+most_similar_jaro <- function(strings, targets) {
+    .Call('_strmatch_most_similar_jaro', PACKAGE = 'strmatch', strings, targets)
 }
 
 jaro_winkler_distance <- function(str1, str2) {
     .Call('_strmatch_jaro_winkler_distance', PACKAGE = 'strmatch', str1, str2)
+}
+
+#' Calculate for each string the Jaro Winkler Distance given a set of target strings.
+#'
+#' @param strings String Vector.
+#' @param targets String Vector.
+#' @export
+most_similar_jw <- function(strings, targets) {
+    .Call('_strmatch_most_similar_jw', PACKAGE = 'strmatch', strings, targets)
 }
 
 levenstein_distance <- function(s1, s2) {
@@ -19,6 +37,15 @@ levenstein_distance <- function(s1, s2) {
 
 levenstein_ratio <- function(s1, s2) {
     .Call('_strmatch_levenstein_ratio', PACKAGE = 'strmatch', s1, s2)
+}
+
+#' Calculate for each string the normalized Levenstein Distance given a set of target strings.
+#'
+#' @param strings String Vector.
+#' @param targets String Vector.
+#' @export
+most_similar_levenstein <- function(strings, targets) {
+    .Call('_strmatch_most_similar_levenstein', PACKAGE = 'strmatch', strings, targets)
 }
 
 to_uppercase <- function(str) {

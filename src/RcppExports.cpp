@@ -16,15 +16,27 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// jaro
-double jaro(const std::string s1, const std::string s2);
-RcppExport SEXP _strmatch_jaro(SEXP s1SEXP, SEXP s2SEXP) {
+// jaro_distance
+double jaro_distance(const std::string s1, const std::string s2);
+RcppExport SEXP _strmatch_jaro_distance(SEXP s1SEXP, SEXP s2SEXP) {
 BEGIN_RCPP
     Rcpp::RObject rcpp_result_gen;
     Rcpp::RNGScope rcpp_rngScope_gen;
     Rcpp::traits::input_parameter< const std::string >::type s1(s1SEXP);
     Rcpp::traits::input_parameter< const std::string >::type s2(s2SEXP);
-    rcpp_result_gen = Rcpp::wrap(jaro(s1, s2));
+    rcpp_result_gen = Rcpp::wrap(jaro_distance(s1, s2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// most_similar_jaro
+List most_similar_jaro(std::vector< std::string > strings, std::vector< std::string > targets);
+RcppExport SEXP _strmatch_most_similar_jaro(SEXP stringsSEXP, SEXP targetsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type strings(stringsSEXP);
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type targets(targetsSEXP);
+    rcpp_result_gen = Rcpp::wrap(most_similar_jaro(strings, targets));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -37,6 +49,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type str1(str1SEXP);
     Rcpp::traits::input_parameter< std::string >::type str2(str2SEXP);
     rcpp_result_gen = Rcpp::wrap(jaro_winkler_distance(str1, str2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// most_similar_jw
+List most_similar_jw(std::vector< std::string > strings, std::vector< std::string > targets);
+RcppExport SEXP _strmatch_most_similar_jw(SEXP stringsSEXP, SEXP targetsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type strings(stringsSEXP);
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type targets(targetsSEXP);
+    rcpp_result_gen = Rcpp::wrap(most_similar_jw(strings, targets));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -61,6 +85,18 @@ BEGIN_RCPP
     Rcpp::traits::input_parameter< std::string >::type s1(s1SEXP);
     Rcpp::traits::input_parameter< std::string >::type s2(s2SEXP);
     rcpp_result_gen = Rcpp::wrap(levenstein_ratio(s1, s2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// most_similar_levenstein
+List most_similar_levenstein(std::vector< std::string > strings, std::vector< std::string > targets);
+RcppExport SEXP _strmatch_most_similar_levenstein(SEXP stringsSEXP, SEXP targetsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type strings(stringsSEXP);
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type targets(targetsSEXP);
+    rcpp_result_gen = Rcpp::wrap(most_similar_levenstein(strings, targets));
     return rcpp_result_gen;
 END_RCPP
 }
@@ -89,10 +125,13 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_bigram", (DL_FUNC) &_strmatch_bigram, 1},
-    {"_strmatch_jaro", (DL_FUNC) &_strmatch_jaro, 2},
+    {"_strmatch_jaro_distance", (DL_FUNC) &_strmatch_jaro_distance, 2},
+    {"_strmatch_most_similar_jaro", (DL_FUNC) &_strmatch_most_similar_jaro, 2},
     {"_strmatch_jaro_winkler_distance", (DL_FUNC) &_strmatch_jaro_winkler_distance, 2},
+    {"_strmatch_most_similar_jw", (DL_FUNC) &_strmatch_most_similar_jw, 2},
     {"_strmatch_levenstein_distance", (DL_FUNC) &_strmatch_levenstein_distance, 2},
     {"_strmatch_levenstein_ratio", (DL_FUNC) &_strmatch_levenstein_ratio, 2},
+    {"_strmatch_most_similar_levenstein", (DL_FUNC) &_strmatch_most_similar_levenstein, 2},
     {"_strmatch_to_uppercase", (DL_FUNC) &_strmatch_to_uppercase, 1},
     {"_strmatch_to_lowercase", (DL_FUNC) &_strmatch_to_lowercase, 1},
     {NULL, NULL, 0}
