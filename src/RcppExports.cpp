@@ -16,6 +16,42 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// damerau_levenshtein
+int damerau_levenshtein(const std::string A, const std::string B);
+RcppExport SEXP _strmatch_damerau_levenshtein(SEXP ASEXP, SEXP BSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::string >::type A(ASEXP);
+    Rcpp::traits::input_parameter< const std::string >::type B(BSEXP);
+    rcpp_result_gen = Rcpp::wrap(damerau_levenshtein(A, B));
+    return rcpp_result_gen;
+END_RCPP
+}
+// damerau_levenshtein_ratio
+double damerau_levenshtein_ratio(const std::string s1, const std::string s2);
+RcppExport SEXP _strmatch_damerau_levenshtein_ratio(SEXP s1SEXP, SEXP s2SEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::string >::type s1(s1SEXP);
+    Rcpp::traits::input_parameter< const std::string >::type s2(s2SEXP);
+    rcpp_result_gen = Rcpp::wrap(damerau_levenshtein_ratio(s1, s2));
+    return rcpp_result_gen;
+END_RCPP
+}
+// most_similar_DL
+List most_similar_DL(const std::vector< std::string > strings, const std::vector< std::string > targets);
+RcppExport SEXP _strmatch_most_similar_DL(SEXP stringsSEXP, SEXP targetsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const std::vector< std::string > >::type strings(stringsSEXP);
+    Rcpp::traits::input_parameter< const std::vector< std::string > >::type targets(targetsSEXP);
+    rcpp_result_gen = Rcpp::wrap(most_similar_DL(strings, targets));
+    return rcpp_result_gen;
+END_RCPP
+}
 // jaro_distance
 double jaro_distance(const std::string s1, const std::string s2);
 RcppExport SEXP _strmatch_jaro_distance(SEXP s1SEXP, SEXP s2SEXP) {
@@ -125,6 +161,9 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_bigram", (DL_FUNC) &_strmatch_bigram, 1},
+    {"_strmatch_damerau_levenshtein", (DL_FUNC) &_strmatch_damerau_levenshtein, 2},
+    {"_strmatch_damerau_levenshtein_ratio", (DL_FUNC) &_strmatch_damerau_levenshtein_ratio, 2},
+    {"_strmatch_most_similar_DL", (DL_FUNC) &_strmatch_most_similar_DL, 2},
     {"_strmatch_jaro_distance", (DL_FUNC) &_strmatch_jaro_distance, 2},
     {"_strmatch_most_similar_jaro", (DL_FUNC) &_strmatch_most_similar_jaro, 2},
     {"_strmatch_jaro_winkler_distance", (DL_FUNC) &_strmatch_jaro_winkler_distance, 2},

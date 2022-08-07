@@ -5,6 +5,23 @@ bigram <- function(strings) {
     .Call('_strmatch_bigram', PACKAGE = 'strmatch', strings)
 }
 
+damerau_levenshtein <- function(A, B) {
+    .Call('_strmatch_damerau_levenshtein', PACKAGE = 'strmatch', A, B)
+}
+
+damerau_levenshtein_ratio <- function(s1, s2) {
+    .Call('_strmatch_damerau_levenshtein_ratio', PACKAGE = 'strmatch', s1, s2)
+}
+
+#' Calculate for each string the normalized Damerau-Levenshtein Distance given a set of target strings.
+#'
+#' @param strings String Vector.
+#' @param targets String Vector.
+#' @export
+most_similar_DL <- function(strings, targets) {
+    .Call('_strmatch_most_similar_DL', PACKAGE = 'strmatch', strings, targets)
+}
+
 jaro_distance <- function(s1, s2) {
     .Call('_strmatch_jaro_distance', PACKAGE = 'strmatch', s1, s2)
 }
