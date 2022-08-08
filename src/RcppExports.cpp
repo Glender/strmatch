@@ -158,6 +158,51 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// read_txt
+std::string read_txt(std::string path);
+RcppExport SEXP _strmatch_read_txt(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_txt(path));
+    return rcpp_result_gen;
+END_RCPP
+}
+// read_txts
+std::string read_txts(std::string path);
+RcppExport SEXP _strmatch_read_txts(SEXP pathSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type path(pathSEXP);
+    rcpp_result_gen = Rcpp::wrap(read_txts(path));
+    return rcpp_result_gen;
+END_RCPP
+}
+// erase_delime
+std::string erase_delime(std::string A, char p);
+RcppExport SEXP _strmatch_erase_delime(SEXP ASEXP, SEXP pSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::string >::type A(ASEXP);
+    Rcpp::traits::input_parameter< char >::type p(pSEXP);
+    rcpp_result_gen = Rcpp::wrap(erase_delime(A, p));
+    return rcpp_result_gen;
+END_RCPP
+}
+// cpp_str_sort
+std::vector< std::string > cpp_str_sort(std::vector< std::string > strings);
+RcppExport SEXP _strmatch_cpp_str_sort(SEXP stringsSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< std::vector< std::string > >::type strings(stringsSEXP);
+    rcpp_result_gen = Rcpp::wrap(cpp_str_sort(strings));
+    return rcpp_result_gen;
+END_RCPP
+}
 // to_uppercase
 std::string to_uppercase(std::string str);
 RcppExport SEXP _strmatch_to_uppercase(SEXP strSEXP) {
@@ -195,6 +240,10 @@ static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_levenstein_distance", (DL_FUNC) &_strmatch_levenstein_distance, 2},
     {"_strmatch_levenstein_ratio", (DL_FUNC) &_strmatch_levenstein_ratio, 2},
     {"_strmatch_most_similar_levenstein", (DL_FUNC) &_strmatch_most_similar_levenstein, 2},
+    {"_strmatch_read_txt", (DL_FUNC) &_strmatch_read_txt, 1},
+    {"_strmatch_read_txts", (DL_FUNC) &_strmatch_read_txts, 1},
+    {"_strmatch_erase_delime", (DL_FUNC) &_strmatch_erase_delime, 2},
+    {"_strmatch_cpp_str_sort", (DL_FUNC) &_strmatch_cpp_str_sort, 1},
     {"_strmatch_to_uppercase", (DL_FUNC) &_strmatch_to_uppercase, 1},
     {"_strmatch_to_lowercase", (DL_FUNC) &_strmatch_to_lowercase, 1},
     {NULL, NULL, 0}
