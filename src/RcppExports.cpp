@@ -16,6 +16,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// count_sentencesCpp
+int count_sentencesCpp(const CharacterVector sentence);
+RcppExport SEXP _strmatch_count_sentencesCpp(SEXP sentenceSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< const CharacterVector >::type sentence(sentenceSEXP);
+    rcpp_result_gen = Rcpp::wrap(count_sentencesCpp(sentence));
+    return rcpp_result_gen;
+END_RCPP
+}
 // damerau_levenshtein
 int damerau_levenshtein(const std::string A, const std::string B);
 RcppExport SEXP _strmatch_damerau_levenshtein(SEXP ASEXP, SEXP BSEXP) {
@@ -172,6 +183,7 @@ END_RCPP
 
 static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_bigram", (DL_FUNC) &_strmatch_bigram, 1},
+    {"_strmatch_count_sentencesCpp", (DL_FUNC) &_strmatch_count_sentencesCpp, 1},
     {"_strmatch_damerau_levenshtein", (DL_FUNC) &_strmatch_damerau_levenshtein, 2},
     {"_strmatch_damerau_levenshtein_ratio", (DL_FUNC) &_strmatch_damerau_levenshtein_ratio, 2},
     {"_strmatch_most_similar_DL", (DL_FUNC) &_strmatch_most_similar_DL, 2},

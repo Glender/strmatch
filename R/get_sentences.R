@@ -24,16 +24,12 @@ get_sentences <- function(text) {
 }
 
 
-#' Count sentences
+#' Count the number of sentences.
 #'
-#' @param text Character
+#' @param sentences CharacterVector
 #'
-#' @return IntegerVector.
+#' @return
 #' @export
-#'
-#' @examples
-#' count_sentences("Hello world! My name is Mike. Why so serious?")
-count_sentences <- function(text) {
-  nr_of_sentences <- length(get_sentences(text))
-  return(nr_of_sentences)
+count_sentences <- function(sentences){
+  return(length(sentences))
 }

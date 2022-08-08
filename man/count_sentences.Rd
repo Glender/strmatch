@@ -2,19 +2,16 @@
 % Please edit documentation in R/get_sentences.R
 \name{count_sentences}
 \alias{count_sentences}
-\title{Count sentences}
+\title{Count the number of sentences.}
 \usage{
-count_sentences(text)
+count_sentences(sentences)
 }
 \arguments{
-\item{text}{Character}
+\item{sentences}{CharacterVector}
 }
 \value{
-IntegerVector.
+
 }
 \description{
-Count sentences
-}
-\examples{
-count_sentences("Hello world! My name is Mike. Why so serious?")
+Count the number of sentences.
 }

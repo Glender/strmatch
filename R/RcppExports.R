@@ -5,6 +5,10 @@ bigram <- function(strings) {
     .Call('_strmatch_bigram', PACKAGE = 'strmatch', strings)
 }
 
+count_sentencesCpp <- function(sentence) {
+    .Call('_strmatch_count_sentencesCpp', PACKAGE = 'strmatch', sentence)
+}
+
 damerau_levenshtein <- function(A, B) {
     .Call('_strmatch_damerau_levenshtein', PACKAGE = 'strmatch', A, B)
 }
