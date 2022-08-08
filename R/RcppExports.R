@@ -65,6 +65,19 @@ most_similar_levenstein <- function(strings, targets) {
     .Call('_strmatch_most_similar_levenstein', PACKAGE = 'strmatch', strings, targets)
 }
 
+#' Find the max indices given a list of edit distances.
+#'
+#' Function is designed to find the max indices in a list of numeric vectors.
+#' The numeric vectors consist of edit distances, numeric values.
+#'
+#' @param list_of_edit_distances A list of numeric vectors.
+#' @return Numeric Vector
+#' @export
+#'
+idx_lookup <- function(list_of_edit_distances) {
+    .Call('_strmatch_idx_lookup', PACKAGE = 'strmatch', list_of_edit_distances)
+}
+
 to_uppercase <- function(str) {
     .Call('_strmatch_to_uppercase', PACKAGE = 'strmatch', str)
 }
