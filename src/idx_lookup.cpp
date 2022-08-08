@@ -10,14 +10,14 @@ using namespace Rcpp;
 //' The numeric vectors consist of edit distances, numeric values.
 //'
 //' @param list_of_edit_distances A list of numeric vectors.
-//' @return Numeric Vector
+//' @return Integer Vector
 //' @export
 //'
 // [[Rcpp::export]]
-NumericVector idx_lookup(List list_of_edit_distances) {
+IntegerVector idx_lookup(List list_of_edit_distances) {
 
   int len_list = list_of_edit_distances.length();
-  NumericVector max_idx(len_list);
+  IntegerVector max_idx(len_list);
   for(int i=0; i < len_list; i++){
 
     // convert to vector

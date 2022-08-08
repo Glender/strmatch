@@ -52,6 +52,17 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
+// idx_lookup
+IntegerVector idx_lookup(List list_of_edit_distances);
+RcppExport SEXP _strmatch_idx_lookup(SEXP list_of_edit_distancesSEXP) {
+BEGIN_RCPP
+    Rcpp::RObject rcpp_result_gen;
+    Rcpp::RNGScope rcpp_rngScope_gen;
+    Rcpp::traits::input_parameter< List >::type list_of_edit_distances(list_of_edit_distancesSEXP);
+    rcpp_result_gen = Rcpp::wrap(idx_lookup(list_of_edit_distances));
+    return rcpp_result_gen;
+END_RCPP
+}
 // jaro_distance
 double jaro_distance(const std::string s1, const std::string s2);
 RcppExport SEXP _strmatch_jaro_distance(SEXP s1SEXP, SEXP s2SEXP) {
@@ -136,17 +147,6 @@ BEGIN_RCPP
     return rcpp_result_gen;
 END_RCPP
 }
-// idx_lookup
-NumericVector idx_lookup(List list_of_edit_distances);
-RcppExport SEXP _strmatch_idx_lookup(SEXP list_of_edit_distancesSEXP) {
-BEGIN_RCPP
-    Rcpp::RObject rcpp_result_gen;
-    Rcpp::RNGScope rcpp_rngScope_gen;
-    Rcpp::traits::input_parameter< List >::type list_of_edit_distances(list_of_edit_distancesSEXP);
-    rcpp_result_gen = Rcpp::wrap(idx_lookup(list_of_edit_distances));
-    return rcpp_result_gen;
-END_RCPP
-}
 // to_uppercase
 std::string to_uppercase(std::string str);
 RcppExport SEXP _strmatch_to_uppercase(SEXP strSEXP) {
@@ -175,6 +175,7 @@ static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_damerau_levenshtein", (DL_FUNC) &_strmatch_damerau_levenshtein, 2},
     {"_strmatch_damerau_levenshtein_ratio", (DL_FUNC) &_strmatch_damerau_levenshtein_ratio, 2},
     {"_strmatch_most_similar_DL", (DL_FUNC) &_strmatch_most_similar_DL, 2},
+    {"_strmatch_idx_lookup", (DL_FUNC) &_strmatch_idx_lookup, 1},
     {"_strmatch_jaro_distance", (DL_FUNC) &_strmatch_jaro_distance, 2},
     {"_strmatch_most_similar_jaro", (DL_FUNC) &_strmatch_most_similar_jaro, 2},
     {"_strmatch_jaro_winkler_distance", (DL_FUNC) &_strmatch_jaro_winkler_distance, 2},
@@ -182,7 +183,6 @@ static const R_CallMethodDef CallEntries[] = {
     {"_strmatch_levenstein_distance", (DL_FUNC) &_strmatch_levenstein_distance, 2},
     {"_strmatch_levenstein_ratio", (DL_FUNC) &_strmatch_levenstein_ratio, 2},
     {"_strmatch_most_similar_levenstein", (DL_FUNC) &_strmatch_most_similar_levenstein, 2},
-    {"_strmatch_idx_lookup", (DL_FUNC) &_strmatch_idx_lookup, 1},
     {"_strmatch_to_uppercase", (DL_FUNC) &_strmatch_to_uppercase, 1},
     {"_strmatch_to_lowercase", (DL_FUNC) &_strmatch_to_lowercase, 1},
     {NULL, NULL, 0}
