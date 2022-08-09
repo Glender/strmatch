@@ -82,20 +82,16 @@ most_similar_levenstein <- function(strings, targets) {
     .Call('_strmatch_most_similar_levenstein', PACKAGE = 'strmatch', strings, targets)
 }
 
-read_txt <- function(path) {
-    .Call('_strmatch_read_txt', PACKAGE = 'strmatch', path)
-}
-
-read_txts <- function(path) {
-    .Call('_strmatch_read_txts', PACKAGE = 'strmatch', path)
-}
-
-erase_delime <- function(A, p) {
-    .Call('_strmatch_erase_delime', PACKAGE = 'strmatch', A, p)
+read_text <- function(path) {
+    .Call('_strmatch_read_text', PACKAGE = 'strmatch', path)
 }
 
 cpp_str_sort <- function(strings) {
     .Call('_strmatch_cpp_str_sort', PACKAGE = 'strmatch', strings)
+}
+
+read_dictionary <- function() {
+    .Call('_strmatch_read_dictionary', PACKAGE = 'strmatch')
 }
 
 to_uppercase <- function(str) {

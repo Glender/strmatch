@@ -11,7 +11,6 @@ using namespace std;
  /*
  All these function are useful in Reading file. erase_delime function is used to erase delimiter
  such space' ' ,new line ('\n'),tab ...
- */
 
 
 //[[Rcpp::export]]
@@ -42,6 +41,7 @@ std::string erase_delime(std::string A,char p){
   return(A);
 }
 
+*/
 
 /*** R
 ###*******************choose file to read************************####
