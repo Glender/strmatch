@@ -68,7 +68,7 @@ List most_similar_jaro(std::vector< std::string > strings, std::vector< std::str
     NumericVector v(num_targets);
     for( int j=0; j < num_targets; j++ ) {
 
-      // calculate LD ratio for each target and store them in v
+      // calculate edit distance ratio for each target and store them in v
       v[j] = jaro_distance(strings[i], targets[j]);
     }
     out[i] = v;
