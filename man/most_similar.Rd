@@ -4,14 +4,14 @@
 \alias{most_similar}
 \title{Find the most similar string in a target set of strings.}
 \usage{
-most_similar(strings, targets, method = c("dl", "lv", "jw", "jaro"))
+most_similar(strings, targets, method = c("dl", "lcs", "lv", "jw", "jaro"))
 }
 \arguments{
 \item{strings}{String Vector. Strings that you want to compare with a target.}
 
 \item{targets}{String Vector. Set of target strings.}
 
-\item{method}{Edit distance method. Either "dl", "lv", "jw", or "jaro".}
+\item{method}{Edit distance method. Either "dl", "lcs", "lv", "jw", or "jaro".}
 }
 \value{
 List
