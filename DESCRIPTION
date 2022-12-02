@@ -1,6 +1,6 @@
 Package: strmatch
 Title: Blitzkrieg fast string matching
-Version: 0.0.0.9000
+Version: 1.0.0.0
 Authors@R: 
     person(given = "Glenn",
            family = "Hiemstra",
@@ -20,3 +20,5 @@ Imports:
 Suggests: 
     testthat (>= 3.0.0)
 Config/testthat/edition: 3
+Depends:
+    R (>= 2.1.0)
