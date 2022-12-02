@@ -33,7 +33,6 @@ double jaro_winkler_distance(std::string str1, std::string str2) {
       }
     }
   }
-
   size_t matches = ch1_match.size();
   if (matches == 0)
     return 0.0;
