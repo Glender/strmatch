@@ -3,7 +3,7 @@
 
 using namespace Rcpp;
 
-
+//' @export
 // [[Rcpp::export]]
 double jaro_winkler_distance(std::string str1, std::string str2) {
 

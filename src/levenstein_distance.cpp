@@ -7,6 +7,7 @@ using namespace Rcpp;
 using namespace std;
 
 
+//' @export
 // [[Rcpp::export]]
 unsigned int levenstein_distance(const std::string& s1, const std::string& s2)
 {
@@ -27,6 +28,7 @@ unsigned int levenstein_distance(const std::string& s1, const std::string& s2)
 }
 
 
+//' @export
 // [[Rcpp::export]]
 double levenstein_ratio(std::string s1, std::string s2){
 

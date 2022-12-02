@@ -5,6 +5,7 @@ using namespace Rcpp;
 using namespace std;
 
 
+//' @export
 // [[Rcpp::export]]
 int damerau_levenshtein(const std::string A, const std::string B)
 {
@@ -81,6 +82,7 @@ int damerau_levenshtein(const std::string A, const std::string B)
 }
 
 
+//' @export
 // [[Rcpp::export]]
 double damerau_levenshtein_ratio(const std::string s1, const std::string s2){
 

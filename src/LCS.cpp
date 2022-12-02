@@ -4,6 +4,7 @@
 using namespace Rcpp;
 using namespace std;
 
+//' @export
 // [[Rcpp::export]]
 unsigned int LCSubStr(std::string X, std::string Y)
 {
@@ -45,6 +46,7 @@ unsigned int LCSubStr(std::string X, std::string Y)
 }
 
 
+//' @export
 // [[Rcpp::export]]
 double LCS_ratio(std::string s1, std::string s2){
 
